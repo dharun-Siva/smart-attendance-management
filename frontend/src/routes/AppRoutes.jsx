@@ -15,7 +15,8 @@ import Faculty from '../pages/admin/Faculty'
 import Students from '../pages/admin/Students'
 import Enrollments from '../pages/admin/Enrollments'
 import Assignments from '../pages/admin/Assignments'
-import AdminPlaceholder from '../pages/admin/Placeholder'
+import AdminCorrections from '../pages/admin/Corrections'
+import AdminReports from '../pages/admin/Reports'
 import FacultyAssignments from '../pages/faculty/Assignments'
 import TakeAttendance from '../pages/faculty/TakeAttendance'
 import AttendanceHistory from '../pages/faculty/AttendanceHistory'
@@ -37,8 +38,8 @@ export default function AppRoutes() {
         <Route path="/admin/students" element={<Students />} />
         <Route path="/admin/enrollments" element={<Enrollments />} />
         <Route path="/admin/assignments" element={<Assignments />} />
-        <Route path="/admin/corrections" element={<AdminPlaceholder title="Corrections" description="Review attendance correction requests from faculty." />} />
-        <Route path="/admin/reports" element={<AdminPlaceholder title="Reports" description="Explore attendance health and low-attendance students." />} />
+        <Route path="/admin/corrections" element={<AdminCorrections />} />
+        <Route path="/admin/reports" element={<AdminReports />} />
       </Route>
       <Route element={<ProtectedRoute allowedRoles={['FACULTY']} />}>
         <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
