@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../auth/AuthContext'
 
@@ -10,6 +11,7 @@ const roleLabels = {
 export default function AppLayout({ children }) {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false)
   const role = user?.role?.toLowerCase()
   const initials = user?.username?.slice(0, 2).toUpperCase() || 'SC'
   const adminNavigation = [
@@ -47,7 +49,7 @@ export default function AppLayout({ children }) {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" onClick={() => setIsAccountMenuOpen(false)}>
       <aside className="sidebar">
         <div className="brand-lockup">
           <div className="brand-mark">CR</div>
@@ -74,12 +76,15 @@ export default function AppLayout({ children }) {
             <span className="topbar-kicker">Academic operations</span>
             <p className="topbar-title">{roleLabels[user?.role] || 'Workspace'}</p>
           </div>
-          <div className="user-chip">
+          <div className="account-menu" onClick={(event) => event.stopPropagation()}>
+            <button className="user-chip" type="button" aria-expanded={isAccountMenuOpen} aria-haspopup="menu" onClick={() => setIsAccountMenuOpen((current) => !current)} onKeyDown={(event) => { if (event.key === 'Escape') setIsAccountMenuOpen(false) }}>
             <span className="avatar">{initials}</span>
             <span>
               <strong>{user?.username}</strong>
               <small>{user?.role}</small>
             </span>
+            </button>
+            {isAccountMenuOpen && <div className="account-dropdown" role="menu"><button type="button" role="menuitem" onClick={handleLogout}>Sign out</button></div>}
           </div>
         </header>
         <div className="page-content">{children}</div>

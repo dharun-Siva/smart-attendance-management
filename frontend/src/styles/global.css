@@ -72,7 +72,13 @@ button { cursor: pointer; }
 .main-area { min-width: 0; flex: 1; }
 .topbar { height: 92px; display: flex; justify-content: space-between; align-items: center; padding: 0 clamp(24px, 5vw, 76px); border-bottom: 1px solid var(--line); background: rgba(247, 248, 245, .8); }
 .topbar-title { margin: 7px 0 0; font-size: 13px; font-weight: 700; }
-.user-chip { display: flex; align-items: center; gap: 10px; }
+.account-menu { position: relative; }
+.user-chip { display: flex; align-items: center; gap: 10px; padding: 4px; border: 0; color: inherit; background: transparent; text-align: left; }
+.user-chip:hover .avatar, .user-chip:focus-visible .avatar { box-shadow: 0 0 0 3px rgba(95, 148, 115, 0.16); }
+.user-chip:focus-visible { outline: 2px solid #6f9b7d; outline-offset: 3px; border-radius: 7px; }
+.account-dropdown { position: absolute; z-index: 10; top: calc(100% + 9px); right: 0; min-width: 132px; padding: 6px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); border-radius: 6px; }
+.account-dropdown button { width: 100%; padding: 9px 10px; border: 0; color: #8f5147; background: transparent; border-radius: 4px; text-align: left; font-size: 12px; font-weight: 700; }
+.account-dropdown button:hover, .account-dropdown button:focus-visible { color: #fff; background: #9b5d52; outline: none; }
 .avatar { width: 36px; height: 36px; display: grid; place-items: center; color: #39654c; background: #d6eadd; border-radius: 50%; font-family: 'DM Mono', monospace; font-size: 11px; }
 .user-chip strong, .user-chip small { display: block; }
 .user-chip strong { font-size: 12px; }
