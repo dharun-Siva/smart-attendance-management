@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 
-from sqlalchemy import Date, Enum as SAEnum, ForeignKey, String, UniqueConstraint
+from sqlalchemy import Date, DateTime, Enum as SAEnum, ForeignKey, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
@@ -33,6 +33,7 @@ class AttendanceSession(TimestampMixin, Base):
         nullable=False,
     )
     created_by: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    submitted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     faculty_assignment: Mapped[FacultyAssignment] = relationship(
         back_populates="attendance_sessions",
